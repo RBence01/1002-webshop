@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout</title>
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/checkout.css">
+</head>
+<body>
+  <script>
+    let data = '<%= cart.join(";")%>'
+    console.log(data);
+    function redirect(n) {
+      
+    }
+  </script>
+  <div class="productContainer">
+    <% for (let e of cart) { %>
+      <div class="product">
+        <button class="discard" style="position: relative; top: 0; right: 0;"
+        onclick="window.location.href = '/checkout?cart=<%= cart.map(x => x.id).filter(x => x != e.id).join() %>'">
+          X
+        </button>
+        <a href="/products/<%= e.id %>?cart=<%= cart.map(x => x.id).join() %>">
+          <div>
+            <div style="position: absolute; width: 0; height: 0;">
+            </div>
+            <img src="<%= e.img %>" alt="<%= e.name %>" />
+            <p><%= e.name %></p>
+          </div>
+        </a>
+      </div>
+    <% } %>
+  </div>
+  <form action="post">
+    <table>
+      <tr>
+        <td><label for="name">Name:</label></td>
+        <td><input type="text" name="name" id="name" required></td>
+      </tr>
+      <tr>
+        <td><label for="billAddress">Billing address:</label></td>
+        <td><input type="text" name="billAddress" id="billAddress" required></td>
+      </tr>
+      <tr>
+        <td><label for="address">Delivery addres:</label></td>
+        <td><input type="text" name="address" id="address" required></td>
+      </tr>
+      <tr>
+        <td><label for="cupon">Cupon:</label></td>
+        <td><input type="text" name="cupon" id="cupon" pattern="^[A-Z][A-Z][\-]\d\d\d\d$" placeholder="AA-1111"></td>
+      </tr>
+      <tr>
+        <td colspan="2"><hr></td>
+      </tr>
+      <tr>
+        <td><label for="card">Card number:</label></td>
+        <td><input type="text" name="card" id="card" pattern="^[A-Z 0-9][A-Z 0-9][A-Z 0-9][A-Z 0-9][\-][A-Z 0-9][A-Z 0-9][A-Z 0-9][A-Z 0-9][\-][A-Z 0-9][A-Z 0-9][A-Z 0-9][A-Z 0-9][\-][A-Z 0-9][A-Z 0-9][A-Z 0-9][A-Z 0-9]$" placeholder="XXXX-XXXX-XXXX-XXXX" required></td>
+      </tr>
+      <tr>
+        <td><label for="expiry">Expiry date:</label></td>
+        <td><input type="date" name="expiry" id="expiry" required></td>
+      </tr>
+      <tr>
+        <td><label for="security">Security code:</label></td>
+        <td><input type="text" name="security" id="security" required></td>
+      </tr>
+      <tr>
+        <td><input type="submit" value="purchase"></td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>

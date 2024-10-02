@@ -14,7 +14,7 @@
   <div class="productContainer">
     <% for (let e of data) { %>
       <div class="product">
-        <a href="/products/<%= e.id %>">
+        <a href="/products/<%= e.id %>?cart=<%= cart %>">
           <div>
             <img src="<%= e.img %>" alt="<%= e.name %>" />
             <p><%= e.name %></p>

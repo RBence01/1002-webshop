@@ -1,5 +1,6 @@
-import { Controller, Get, Param, Query, Render } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, Render, Res } from '@nestjs/common';
 import { AppService } from './app.service';
+import { Response } from 'express';
 
 @Controller()
 export class AppController {
@@ -46,5 +47,29 @@ export class AppController {
     }
 
     return {product, cart: cart};
+  }
+
+  @Get('/checkout')
+  @Render('checkout')
+  checkout(@Query('cart') cart: string) {
+    const cartProduct = [];
+    new Set(cart.split(',')).forEach(e => {
+      const n = parseInt(e);
+      if (n) {
+        const product = this.data.find(x => x.id === n);
+        if (product) cartProduct.push(product);
+      }
+    });
+    return {cart: cartProduct}
+  }
+
+  @Post('/checkout')
+  purchase(@Res() res: Response, @Body() body) {
+    const errors = [];
+    if (!body.name || !body.billAddress || !body.address || !body.card || !body.expiry || !body.security) {
+      errors.push('Bad input!');
+      res.render('/checkout');
+      return;
+    }
   }
 }
