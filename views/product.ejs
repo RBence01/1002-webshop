@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/product.css">
+  <% if (locals.error) { %>
+    <title><%= error %></title>
+  <% } else { %>
+    <title><%= product.name %></title>
+  <% } %>
+</head>
+<body>
+  <% if (locals.error) { %>
+    <h1 style="color: red; margin:auto; width: fit-content; font-size: 5vw;"><%= error %></h1>
+  <% } else { %>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th colspan="2">
+              <h1><%= product.name %></h1>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="2">
+              <div>
+                <img src="<%= product.img %> " alt="product image">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><a href="/?cart=<%= product.id %>;<%= cart %>" class="purchase">add to cart</a></td>
+            <td><a href="/checkout?cart=<%= product.id %>;<%= cart %>" class="purchase">purchase</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+</body>
+</html>

@@ -1,0 +1,18 @@
+.purchase {
+  display: block;
+  color: var(--text-color);
+  text-decoration: none;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: auto;
+  width: fit-content;
+  padding: 5px;
+  font-size: 50px;
+  background-color: var(--cardBg);
+  box-shadow: 2px 4px #00000060;
+  transition: background-color 0.2s linear;
+}
+
+.purchase:hover {
+  background-color: var(--cardHover);
+}

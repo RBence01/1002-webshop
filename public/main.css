@@ -1,0 +1,11 @@
+:root {
+  --textColor: white;
+  --bgColor: rgb(74, 74, 74);
+  --cardBg: rgb(98, 98, 98);
+  --cardHover: rgb(116, 116, 116);
+}
+
+body {
+  background-color: var(--bgColor);
+  color: var(--textColor);
+}

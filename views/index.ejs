@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>BathHaven</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' href='/main.css'>
+  <link rel="stylesheet" href="/index.css">
+</head>
+
+<body>
+  <div class="productContainer">
+    <% for (let e of data) { %>
+      <div class="product">
+        <a href="/products/<%= e.id %>">
+          <div>
+            <img src="<%= e.img %>" alt="<%= e.name %>" />
+            <p><%= e.name %></p>
+          </div>
+        </a>
+      </div>
+    <% } %>
+  </div>
+</body>
+
+</html>
